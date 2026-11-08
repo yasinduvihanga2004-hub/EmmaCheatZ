@@ -6,13 +6,14 @@
     <title>EmmaCheatZ - Dashboard</title>
     <style>
         :root {
-            --bg-color: #060b19;          /* Deep Dark Blue */
+            --bg-color: #060b19;          /* Deep Dark Blue (Dashboard & Login theme) */
             --panel-bg: #0d1527;        /* Card Dark Blue */
             --accent-blue: #0066ff;      /* Electric Blue */
             --accent-cyan: #00d9ff;      /* Bright Cyan Blue */
             --text-color: #ffffff;
             --text-muted: #768cae;
             --danger: #ff3366;
+            --success: #00d9ff;
         }
 
         * {
@@ -29,13 +30,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            padding: 20px;
+            transition: background-color 0.5s ease;
         }
 
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 20px;
         }
 
         .card {
@@ -78,9 +79,15 @@
             color: var(--text-muted);
         }
 
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
         input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px 75px 12px 15px; /* ඉඩ වෙන් කර ඇත දකුණුපස බොත්තම් සඳහා */
             background: rgba(4, 9, 22, 0.6);
             border: 1px solid rgba(0, 102, 255, 0.3);
             border-radius: 6px;
@@ -93,6 +100,31 @@
         input:focus {
             border-color: var(--accent-cyan);
             box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Input ඇතුළත ඇති Paste සහ Show බොත්තම් */
+        .input-actions {
+            position: absolute;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .action-chip {
+            background: rgba(0, 102, 255, 0.2);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            color: var(--accent-cyan);
+            padding: 4px 6px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .action-chip:hover {
+            background: rgba(0, 102, 255, 0.4);
         }
 
         .btn {
@@ -119,7 +151,7 @@
             display: none !important;
         }
 
-        /* Dashboard Styles */
+        /* Dashboard Styles (ඔබ ඉල්ලූ පරිදි මුල් පින්තූරයේ මෙන් සකසා ඇත) */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -187,16 +219,27 @@
             <h2>EmmaCheatZ Login</h2>
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter username...">
+                <div class="input-wrapper">
+                    <input type="text" id="username" placeholder="Enter username...">
+                    <div class="input-actions">
+                        <button type="button" class="action-chip" onclick="pasteText('username')">Paste</button>
+                    </div>
+                </div>
             </div>
             <div class="input-group">
                 <label for="password">Password (Key)</label>
-                <input type="password" id="password" placeholder="Enter key...">
+                <div class="input-wrapper">
+                    <input type="password" id="password" placeholder="Enter key...">
+                    <div class="input-actions">
+                        <button type="button" class="action-chip" onclick="pasteText('password')">Paste</button>
+                        <button type="button" class="action-chip" id="toggleBtn" onclick="togglePassword()">Show</button>
+                    </div>
+                </div>
             </div>
             <button class="btn" onclick="handleLogin()">Access System</button>
         </div>
 
-        <!-- Dashboard Section -->
+        <!-- Dashboard Section (ඔබ ඉල්ලූ පරිදි සකස් කළ පෙනුම) -->
         <div id="dashboardSection" class="card hidden">
             <div class="dashboard-header">
                 <h3>EmmaCheatZ Panel</h3>
@@ -232,8 +275,9 @@
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
 
-            // Username එක EmmaCheats විය යුතු අතර, password එක ඉහත validKeys ලැයිස්තුවේ තිබිය යුතුය
             if (user === "EmmaCheats" && validKeys.includes(pass)) {
+                // Login වූ පසු Background එක Dark Blue වර්ණයට ස්ථිරවම තබා ගැනීම
+                document.body.style.backgroundColor = "#060b19";
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
             } else {
@@ -246,6 +290,29 @@
             document.getElementById('password').value = '';
             document.getElementById('dashboardSection').classList.add('hidden');
             document.getElementById('loginSection').classList.remove('hidden');
+        }
+
+        // Clipboard එකෙන් ics කෝඩ් හෝ අංක Paste කරගැනීමේ පහසුකම
+        async function pasteText(fieldId) {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById(fieldId).value = text;
+            } catch (err) {
+                alert('Clipboard access denied or not supported. Please paste manually.');
+            }
+        }
+
+        // Key එක බැලීමට (Show/Hide) ඔප්ෂන් එක
+        function togglePassword() {
+            const passInput = document.getElementById('password');
+            const toggleBtn = document.getElementById('toggleBtn');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                toggleBtn.textContent = 'Hide';
+            } else {
+                passInput.type = 'password';
+                toggleBtn.textContent = 'Show';
+            }
         }
     </script>
 </body>
