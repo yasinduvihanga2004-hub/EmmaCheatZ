@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmmaCheatZ - Dashboard</title>
+    <title>EmmaCheatZ - Phantom Hub</title>
     <style>
         :root {
-            --bg-color: #060b19;          /* Deep Dark Blue (Dashboard & Login theme) */
-            --panel-bg: #0d1527;        /* Card Dark Blue */
-            --accent-blue: #0066ff;      /* Electric Blue */
-            --accent-cyan: #00d9ff;      /* Bright Cyan Blue */
+            --login-bg: #060b19;
+            --dash-bg: #060913;
+            --panel-bg: #111827;
+            --accent-gold: #f59e0b;
             --text-color: #ffffff;
-            --text-muted: #768cae;
-            --danger: #ff3366;
-            --success: #00d9ff;
+            --text-muted: #9ca3af;
+            --danger: #ef4444;
+            --success: #10b981;
         }
 
         * {
@@ -24,7 +24,7 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--login-bg);
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
@@ -36,15 +36,15 @@
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
         }
 
         .card {
             background-color: var(--panel-bg);
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 0 25px rgba(0, 102, 255, 0.25);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -56,26 +56,26 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--accent-cyan);
-            text-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
@@ -87,10 +87,10 @@
 
         input {
             width: 100%;
-            padding: 12px 75px 12px 15px; /* ඉඩ වෙන් කර ඇත දකුණුපස බොත්තම් සඳහා */
-            background: rgba(4, 9, 22, 0.6);
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            border-radius: 6px;
+            padding: 12px 90px 12px 15px; /* දකුණුපස Paste සහ Show බොත්තම් සඳහා ඉඩ වෙන් කර ඇත */
+            background: rgba(6, 9, 19, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
             color: var(--text-color);
             font-size: 1rem;
             outline: none;
@@ -98,22 +98,22 @@
         }
 
         input:focus {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
         }
 
-        /* Input ඇතුළත ඇති Paste සහ Show බොත්තම් */
+        /* Input ඇතුළත දකුණු කෙළවරේ ඇති Paste සහ Show බොත්තම් */
         .input-actions {
             position: absolute;
             right: 8px;
             display: flex;
-            gap: 5px;
+            gap: 4px;
         }
 
         .action-chip {
-            background: rgba(0, 102, 255, 0.2);
-            border: 1px solid rgba(0, 102, 255, 0.4);
-            color: var(--accent-cyan);
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: var(--accent-gold);
             padding: 4px 6px;
             font-size: 0.7rem;
             border-radius: 4px;
@@ -124,22 +124,22 @@
         }
 
         .action-chip:hover {
-            background: rgba(0, 102, 255, 0.4);
+            background: rgba(245, 158, 11, 0.3);
         }
 
         .btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             color: #ffffff;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
             transition: opacity 0.3s ease;
         }
 
@@ -151,63 +151,215 @@
             display: none !important;
         }
 
-        /* Dashboard Styles (ඔබ ඉල්ලූ පරිදි මුල් පින්තූරයේ මෙන් සකසා ඇත) */
+        /* Dashboard Styles (වීඩියෝවේ ඇති පරිදි) */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 102, 255, 0.25);
-            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+            padding-bottom: 15px;
         }
 
-        .status-badge {
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--accent-cyan);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(0, 217, 255, 0.4);
-            box-shadow: 0 0 8px rgba(0, 217, 255, 0.2);
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
         }
 
-        .stats-grid {
+        .auth-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .action-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
-        .stat-box {
-            background: rgba(4, 9, 22, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 102, 255, 0.2);
-            text-align: center;
+        .btn-secondary {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: var(--accent-gold);
+            box-shadow: none;
         }
 
-        .stat-box h4 {
+        .btn-secondary:hover {
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .section-title {
             font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 5px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .stat-box p {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-cyan);
+        .metrics-box {
+            background: rgba(6, 9, 19, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
         }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .status-online {
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-online::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px var(--success);
+        }
+
+        .config-list {
+            background: rgba(6, 9, 19, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .config-item:last-child {
+            border-bottom: none;
+        }
+
+        .config-info h5 {
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .config-info p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #374151;
+            transition: .3s;
+            border-radius: 22px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-gold);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        /* Console Output */
+        .console-box {
+            background: #030712;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.75rem;
+            height: 110px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            color: #34d399;
+        }
+
+        .console-line {
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .console-line.sys { color: #60a5fa; }
+        .console-line.auth { color: #f59e0b; }
+        .console-line.net { color: #a78bfa; }
 
         .logout-btn {
-            background: rgba(255, 51, 102, 0.1);
+            background: rgba(239, 68, 68, 0.1);
             color: var(--danger);
-            border: 1px solid rgba(255, 51, 102, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             box-shadow: none;
-            margin-top: 10px;
         }
 
         .logout-btn:hover {
-            background: rgba(255, 51, 102, 0.2);
+            background: rgba(239, 68, 68, 0.2);
         }
     </style>
 </head>
@@ -239,26 +391,87 @@
             <button class="btn" onclick="handleLogin()">Access System</button>
         </div>
 
-        <!-- Dashboard Section (ඔබ ඉල්ලූ පරිදි සකස් කළ පෙනුම) -->
+        <!-- Dashboard Section -->
         <div id="dashboardSection" class="card hidden">
             <div class="dashboard-header">
-                <h3>EmmaCheatZ Panel</h3>
-                <span class="status-badge">ONLINE</span>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <h4>Status</h4>
-                    <p>Active</p>
+                <div>
+                    <div class="brand-title">PHANTOM HUB</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">ID: PHTM-8F92-41A7</div>
                 </div>
-                <div class="stat-box">
-                    <h4>Security</h4>
-                    <p>Protected</p>
+                <span class="auth-badge">AUTHENTICATED</span>
+            </div>
+
+            <div class="action-row">
+                <button class="btn btn-secondary" onclick="alert('Client launched successfully!')">Launch Client</button>
+                <button class="btn logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+
+            <!-- License Metrics -->
+            <div class="section-title">⚡ License Metrics</div>
+            <div class="metrics-box">
+                <div class="metric-row">
+                    <span class="metric-label">TIME REMAINING:</span>
+                    <span class="metric-value">29D 23H 59M 32S</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">LICENSE PLAN:</span>
+                    <span class="metric-value" style="color: var(--accent-gold);">LIFETIME VIP</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">HWID LOCK:</span>
+                    <span class="metric-value">MATCHED (DESKTOP)</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">SERVER STATUS:</span>
+                    <span class="metric-value status-online">ONLINE</span>
                 </div>
             </div>
-            <div class="input-group">
-                <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center;">Welcome back, Commander!</p>
+
+            <!-- System Configuration -->
+            <div class="section-title">⚙️ System Configuration</div>
+            <div class="config-list">
+                <div class="config-item">
+                    <div class="config-info">
+                        <h5>Stream Proof</h5>
+                        <p>Hide visuals from recording software</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="config-item">
+                    <div class="config-info">
+                        <h5>Auto Inject</h5>
+                        <p>Automatically attach on process start</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="config-item">
+                    <div class="config-info">
+                        <h5>Performance Boost</h5>
+                        <p>Optimize CPU priority & memory</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
-            <button class="btn logout-btn" onclick="handleLogout()">Disconnect</button>
+
+            <!-- Console Output -->
+            <div class="section-title">💻 Console Output</div>
+            <div class="console-box" id="consoleBox">
+                <div class="console-line sys">[SYSTEM]: Key validated successfully.</div>
+                <div class="console-line auth">[AUTH]: Token stored in session memory.</div>
+                <div class="console-line net">[NET]: Connected to node #04 (EU-West).</div>
+                <div class="console-line sys">[USER]: Authenticated successfully.</div>
+            </div>
+
+            <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 8px;" onclick="clearConsole()">Clear Logs</button>
         </div>
     </div>
 
@@ -276,8 +489,8 @@
             const pass = document.getElementById('password').value.trim();
 
             if (user === "EmmaCheats" && validKeys.includes(pass)) {
-                // Login වූ පසු Background එක Dark Blue වර්ණයට ස්ථිරවම තබා ගැනීම
-                document.body.style.backgroundColor = "#060b19";
+                // Login වූ පසු Background එක ඩාීෂ්බෝඩ් එකේ වර්ණයට මාරු වීම
+                document.body.style.backgroundColor = "var(--dash-bg)";
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('dashboardSection').classList.remove('hidden');
             } else {
@@ -288,11 +501,13 @@
         function handleLogout() {
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
+            // Logout වූ පසු නැවත Login background එකට හැරවීම
+            document.body.style.backgroundColor = "var(--login-bg)";
             document.getElementById('dashboardSection').classList.add('hidden');
             document.getElementById('loginSection').classList.remove('hidden');
         }
 
-        // Clipboard එකෙන් ics කෝඩ් හෝ අංක Paste කරගැනීමේ පහසුකම
+        // Clipboard එකෙන් Paste කරගැනීමේ පහසුකම
         async function pasteText(fieldId) {
             try {
                 const text = await navigator.clipboard.readText();
@@ -302,7 +517,7 @@
             }
         }
 
-        // Key එක බැලීමට (Show/Hide) ඔප්ෂන් එක
+        // Key එක පරීක්ෂා කර බැලීමට (Show/Hide) ඔප්ෂන් එක
         function togglePassword() {
             const passInput = document.getElementById('password');
             const toggleBtn = document.getElementById('toggleBtn');
@@ -313,6 +528,10 @@
                 passInput.type = 'password';
                 toggleBtn.textContent = 'Show';
             }
+        }
+
+        function clearConsole() {
+            document.getElementById('consoleBox').innerHTML = '';
         }
     </script>
 </body>
